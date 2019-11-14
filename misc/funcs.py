@@ -10,6 +10,7 @@ def retrieve_articles_from_tags(api: Pocket, tags: List[str]) -> List[Dict]:
         if not results["error"]:
             for result in results["list"].values():
                 article = {}
+<<<<<<< HEAD
                 article["item_id"] = result.get("item_id", None)
                 article["resolved_id"] = result.get("resolved_id", None)
                 article["given_url"] = result.get("given_url", None)
@@ -24,5 +25,21 @@ def retrieve_articles_from_tags(api: Pocket, tags: List[str]) -> List[Dict]:
                 if domain_metadata:
                     article["domain_metadata"] = domain_metadata.get("name", None)
                 article["tag"] = tag
+=======
+                article['item_id'] = result.get('item_id', None)
+                article['resolved_id'] = result.get('resolved_id', None)
+                article['given_url'] = result.get('given_url', None)
+                article['given_title'] = result.get('given_title', None)
+                article['resolved_url'] = result.get('resolved_url', None)
+                article['resolved_title'] = result.get('resolved_title', None)
+                article['is_article'] = result.get('is_article', None)
+                article['excerpt'] = result.get('excerpt', None)
+                article['word_count'] = result.get('word_count', None)
+                article['lang'] = result.get('lang', None)
+                domain_metadata = result.get('domain_metadata', None)
+                if domain_metadata:
+                    article['domain_metadata'] = domain_metadata.get('name', None)
+                article['tag'] = tag
+>>>>>>> 8fbca35c0d3c509d46d1817546bab1b5c8a72f9d
                 container.append(article)
     return container
