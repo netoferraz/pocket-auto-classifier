@@ -1,4 +1,3 @@
-from misc.models import PocketData
 from pocket import Pocket
 from typing import List, Dict
 
@@ -20,7 +19,9 @@ def retrieve_articles_from_tags(api: Pocket, tags: List[str]) -> List[Dict]:
                 article['excerpt'] = result.get('excerpt', None)
                 article['word_count'] = result.get('word_count', None)
                 article['lang'] = result.get('lang', None)
-                article['domain_metadata'] = result.get('domain_metadata', None).get('name', None)
+                domain_metadata = result.get('domain_metadata', None)
+                if domain_metadata:
+                    article['domain_metadata'] = domain_metadata.get('name', None)
                 article['tag'] = tag
                 container.append(article)
     return container
